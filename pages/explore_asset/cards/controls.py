@@ -11,7 +11,7 @@ import pandas as pd
 from common import settings as settings #, inflation as inflation
 # from common.create_link import create_link, check_if_list_empty_or_big
 #from common.html_elements.copy_link_div import create_copy_link_div
-from common.symbols import get_symbols, get_currency_list
+from common.symbols import get_symbols
 from common import cache
 # import pages.efficient_frontier.cards_efficient_frontier.eng.ef_tooltips_options_txt as tl
 
@@ -44,18 +44,18 @@ def card_controls(
                         ),
                     ],
                 ),
-                html.Div(
-                    [
-                        html.Label("Base currency"),
-                        dcc.Dropdown(
-                            options=get_currency_list(),
-                            value=ccy if ccy else "USD",
-                            multi=False,
-                            placeholder="Select a base currency",
-                            id="ea-base-currency",
-                        ),
-                    ],
-                ),
+                # html.Div(
+                #     [
+                #         html.Label("Base currency"),
+                #         dcc.Dropdown(
+                #             options=get_currency_list(),
+                #             value=ccy if ccy else "USD",
+                #             multi=False,
+                #             placeholder="Select a base currency",
+                #             id="ea-base-currency",
+                #         ),
+                #     ],
+                # ),
                 html.Div(
                     [
                         dbc.Row(

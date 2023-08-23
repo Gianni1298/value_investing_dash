@@ -1,5 +1,4 @@
 import dash
-import okama
 from dash import callback, html, dcc
 from dash.dependencies import Input, Output, State
 import dash_bootstrap_components as dbc
@@ -17,9 +16,9 @@ from pages.explore_asset.cards.controls import card_controls
 dash.register_page(
     __name__,
     path="/",
-    title="Efficient Frontier : okama",
-    name="Efficient Frontier",
-    description="Efficient Frontier for the investment portfolios",
+    title="Explore Stock",
+    name="Explore Stock",
+    description="Explore Stock application to compare assets.",
 )
 
 
@@ -27,8 +26,8 @@ def layout(tickers=None, start_date=None, end_date=None, ccy=None, **kwargs):
     tickers_list = make_list_from_string(tickers)
     page = dbc.Container(
         [
-            dbc.Row(card_controls(tickers_list, start_date, end_date, ccy), lg=7),
-            dbc.Row(card_ea_info, lg=5),
+            dbc.Row(card_controls(tickers_list, start_date, end_date, ccy), align="center"),
+            dbc.Row(card_ea_info, align="center"),
             dbc.Row(dbc.Col(card_graf, width=12), align="center"),
             # dbc.Row(
             #     html.Div(

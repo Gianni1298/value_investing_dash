@@ -6,3 +6,5 @@ flask_caching
 okama
 yfinance
 pandas
+requests
+finnhub-python

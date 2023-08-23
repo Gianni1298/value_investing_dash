@@ -1,27 +1,27 @@
 import yfinance as yf
 import pandas as pd
 from dash import dash_table
-import okama
+# import okama
 from common.parse_query import get_marketCap
 
-
-def get_assets_names(al_object: okama.AssetList) -> dash_table.DataTable:
-    """
-    Render DataTable with assets names.
-    """
-    names_df = (
-        pd.DataFrame.from_dict(al_object.names, orient="index")
-        .reset_index(drop=False)
-        .rename(columns={"index": "Ticker", 0: "Name"})[["Ticker", "Name"]]
-    )
-    return dash_table.DataTable(
-        data=names_df.to_dict(orient="records"),
-        style_data={
-            "whiteSpace": "normal",
-            "height": "auto",
-        },
-        # page_size=4,
-    )
+#
+# def get_assets_names(al_object: okama.AssetList) -> dash_table.DataTable:
+#     """
+#     Render DataTable with assets names.
+#     """
+#     names_df = (
+#         pd.DataFrame.from_dict(al_object.names, orient="index")
+#         .reset_index(drop=False)
+#         .rename(columns={"index": "Ticker", 0: "Name"})[["Ticker", "Name"]]
+#     )
+#     return dash_table.DataTable(
+#         data=names_df.to_dict(orient="records"),
+#         style_data={
+#             "whiteSpace": "normal",
+#             "height": "auto",
+#         },
+#         # page_size=4,
+#     )
 
 
 def get_info(assets: list) -> dash_table.DataTable:
