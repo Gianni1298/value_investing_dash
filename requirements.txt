@@ -1,0 +1,8 @@
+dash
+dash_daq
+dash-bootstrap-components
+plotly
+flask_caching
+okama
+yfinance
+pandas
