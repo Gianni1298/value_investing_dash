@@ -36,10 +36,11 @@ def get_info(assets: list) -> dash_table.DataTable:
         long_name = yf_ticker.info.get("longName", "N/A")
         industry = yf_ticker.info.get("industry", "N/A")
         sector = yf_ticker.info.get("sector", "N/A")
-        marketCap = get_marketCap(yf_ticker.info.get("marketCap", "N/A"))
+        currency = yf_ticker.info.get("currency", "N/A")
+        market_cap = get_marketCap(yf_ticker.info.get("marketCap", "N/A"))
 
         info_list += [
-            {"Ticker": ticker, "Name": long_name, "Industry": industry, "Sector": sector, "Market Cap": marketCap}
+            {"Ticker": ticker, "Name": long_name, "Industry": industry, "Sector": sector, "Market Cap": market_cap, "Currency": currency}
         ]
 
     info_table = dash_table.DataTable(

@@ -19,7 +19,7 @@ app = dash.get_app()
 cache.init_app(app.server)
 options = get_symbols()
 
-today_str = pd.Timestamp.today().strftime("%Y-%m")
+today_str = pd.Timestamp.today().strftime("%Y-%m-%d")
 
 
 def card_controls(
@@ -65,10 +65,10 @@ def card_controls(
                                         html.Label("Start Date"),
                                         dbc.Input(
                                             id="ea-start-date",
-                                            value=start_date if start_date else "2000-01",
+                                            value=start_date if start_date else "2000-01-01",
                                             type="text",
                                         ),
-                                        dbc.FormText("Format: YYYY-MM"),
+                                        dbc.FormText("Format: YYYY-MM-DD"),
                                     ],
                                 ),
                                 dbc.Col(
@@ -79,7 +79,7 @@ def card_controls(
                                             value=end_date if end_date else today_str,
                                             type="text",
                                         ),
-                                        dbc.FormText("Format: YYYY-MM"),
+                                        dbc.FormText("Format: YYYY-MM-DD"),
                                     ],
                                 ),
                             ]
