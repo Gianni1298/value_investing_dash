@@ -1,0 +1,80 @@
+import dash_bootstrap_components as dbc
+from dash import html, callback, dash_table, dcc
+from dash.dependencies import Input, Output, State
+
+ticker = State(component_id="ea-symbols-list", component_property="value")
+
+# Placeholder graph cards
+card_graph1 = dbc.Card(
+    dbc.CardBody(
+        [
+            html.H6(f"{ticker} price to Earnings (P/E)"),
+            dcc.RadioItems(
+                options=[
+                    {'label': '3Y', 'value': '3Y'},
+                    {'label': '5Y', 'value': '5Y'},
+                    {'label': 'All', 'value': 'ALL'},
+                ],
+                value='3Y',  # Default selected value
+                id='pe-time-range-radio',
+                className="btn-group",
+                inputClassName="btn-check",
+                labelClassName="btn btn-outline-primary",
+                inline=True
+            ),
+            dcc.Graph(id='p/e-graph', figure={})  # Placeholder figure
+        ]
+    ),
+    class_name="mb-3",
+)
+
+card_graph2 = dbc.Card(
+    dbc.CardBody(
+        [
+            html.H6("Graph 2"),
+            dcc.Graph(id='graph-2', figure={})  # Placeholder figure
+        ]
+    ),
+    class_name="mb-3",
+)
+
+card_graph3 = dbc.Card(
+    dbc.CardBody(
+        [
+            html.H6("Graph 3"),
+            dcc.Graph(id='graph-3', figure={})  # Placeholder figure
+        ]
+    ),
+    class_name="mb-3",
+)
+
+card_graph4 = dbc.Card(
+    dbc.CardBody(
+        [
+            html.H6("Graph 4"),
+            dcc.Graph(id='graph-4', figure={})  # Placeholder figure
+        ]
+    ),
+    class_name="mb-3",
+)
+
+card_valuation = dbc.Card(
+    dbc.CardBody(
+        [
+            html.H5("Valuation"),
+
+            # First row of graphs
+            dbc.Row([
+                dbc.Col(card_graph1, width=6),  # Half the width (12/2)
+                dbc.Col(card_graph2, width=6)
+            ], className="mb-3"),  # margin-bottom to add some spacing between rows
+
+            # Second row of graphs
+            dbc.Row([
+                dbc.Col(card_graph3, width=6),
+                dbc.Col(card_graph4, width=6)
+            ])
+        ]
+    ),
+    class_name="mb-3",
+)

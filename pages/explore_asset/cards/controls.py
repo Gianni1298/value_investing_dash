@@ -44,18 +44,6 @@ def card_controls(
                         ),
                     ],
                 ),
-                # html.Div(
-                #     [
-                #         html.Label("Base currency"),
-                #         dcc.Dropdown(
-                #             options=get_currency_list(),
-                #             value=ccy if ccy else "USD",
-                #             multi=False,
-                #             placeholder="Select a base currency",
-                #             id="ea-base-currency",
-                #         ),
-                #     ],
-                # ),
                 html.Div(
                     [
                         dbc.Row(
@@ -104,41 +92,3 @@ def card_controls(
     )
     return card
 
-#
-# @app.callback(
-#     Output("ea-symbols-list", "options"),
-#     Input("ea-symbols-list", "search_value"),
-#     Input("ea-symbols-list", "value"),
-# )
-# def optimize_search_ef(search_value, selected_values):
-#     return (
-#         [o for o in options if re.match(search_value, o, re.IGNORECASE) or o in (selected_values or [])]
-#         if search_value
-#         else selected_values
-#     )
-
-#
-# @app.callback(
-#     Output("ea-symbols-list", "disabled"),
-#     Input("ea-symbols-list", "value"),
-# )
-# def disable_search(tickers_list) -> bool:
-#     """
-#     Disable asset search form if the number of ticker exceeds allowed in settings.
-#     """
-#     return len(tickers_list) >= settings.ALLOWED_NUMBER_OF_TICKERS
-
-
-# @app.callback(
-#     Output("ea-submit-button-state", "disabled"),
-#     Input("ea-symbols-list", "value"),
-# )
-# def disable_submit(tickers_list) -> bool:
-#     """
-#     Disable Submit button.
-#
-#     conditions:
-#     - number of tickers is < 2
-#     - MC number is incorrect
-#     """
-#     return len(tickers_list) > 1
