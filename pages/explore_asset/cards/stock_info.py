@@ -3,7 +3,6 @@ from dash import html, callback, dash_table
 from dash.dependencies import Input, Output
 from dash.exceptions import PreventUpdate
 
-import yfinance as yf
 
 from common.html_elements.get_info import get_info
 
