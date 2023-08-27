@@ -23,10 +23,10 @@ card_ea_info = dbc.Card(
     Input("ea-symbols-list", "value"),  # tickers
     prevent_initial_call=False,
 )
-def pf_update_asset_names_info(assets: list) -> dash_table.DataTable:
-    assets = [i for i in assets if i is not None]
-    if not assets:
-        raise PreventUpdate
+def pf_update_asset_names_info(assets: str) -> dash_table.DataTable:
+    # assets = [i for i in assets if i is not None]
+    # if not assets:
+    #     raise PreventUpdate
     # al_object = ok.AssetList(assets)
     # names_table = get_assets_names(al_object)
     info_table = get_info(assets)

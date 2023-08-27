@@ -4,34 +4,15 @@ from dash import dash_table
 # import okama
 from common.parse_query import get_marketCap
 
-#
-# def get_assets_names(al_object: okama.AssetList) -> dash_table.DataTable:
-#     """
-#     Render DataTable with assets names.
-#     """
-#     names_df = (
-#         pd.DataFrame.from_dict(al_object.names, orient="index")
-#         .reset_index(drop=False)
-#         .rename(columns={"index": "Ticker", 0: "Name"})[["Ticker", "Name"]]
-#     )
-#     return dash_table.DataTable(
-#         data=names_df.to_dict(orient="records"),
-#         style_data={
-#             "whiteSpace": "normal",
-#             "height": "auto",
-#         },
-#         # page_size=4,
-#     )
 
-
-def get_info(assets: list) -> dash_table.DataTable:
+def get_info(assets: str) -> dash_table.DataTable:
     """
     Render DataTable with information about assets available historical period: length, first date, last date etc.
     """
-    yf_tickers = [asset.split('.')[0] for asset in assets]
 
+    yf_ticker = [assets]
     info_list = []
-    for ticker in yf_tickers:
+    for ticker in yf_ticker:
         yf_ticker = yf.Ticker(ticker)
         long_name = yf_ticker.info.get("longName", "N/A")
         industry = yf_ticker.info.get("industry", "N/A")

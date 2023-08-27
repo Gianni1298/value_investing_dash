@@ -38,7 +38,7 @@ def card_controls(
                         dcc.Dropdown(
                             options=options,
                             value=tickers if tickers else settings.default_symbols,
-                            multi=True,
+                            multi=False,
                             placeholder="Select assets",
                             id="ea-symbols-list",
                         ),
@@ -84,169 +84,6 @@ def card_controls(
                                 ),
                             ]
                         )
-                #         dbc.Row(html.H5(children="Options")),
-                #         dbc.Row(
-                #             [
-                #                 dbc.Col(
-                #                     [
-                #                         dbc.Label(
-                #                             [
-                #                                 "Plot:",
-                #                                 html.I(
-                #                                     className="bi bi-info-square ms-2",
-                #                                     id="info-ror",
-                #                                 ),
-                #                             ]
-                #                         ),
-                #                         dbc.RadioItems(
-                #                             options=[
-                #                                 {
-                #                                     "label": "Geometric mean vs Risk",
-                #                                     "value": "Geometric",
-                #                                 },
-                #                                 {
-                #                                     "label": "Arithmetic mean vs Risk",
-                #                                     "value": "Arithmetic",
-                #                                 },
-                #                             ],
-                #                             value="Geometric",
-                #                             id="ef-plot-options",
-                #                         ),
-                #                         dbc.Tooltip(
-                #                             tl.ef_options_tooltip_ror,
-                #                             target="info-ror",
-                #                         ),
-                #                     ],
-                #                     lg=4,
-                #                     md=4,
-                #                     sm=12,
-                #                     class_name="pt-4 pt-sm-4 pt-md-1",
-                #                 ),
-                #                 dbc.Col(
-                #                     [
-                #                         dbc.Label(
-                #                             [
-                #                                 "Capital Market Line (CML)",
-                #                                 html.I(
-                #                                     className="bi bi-info-square ms-2",
-                #                                     id="info-cml",
-                #                                 ),
-                #                             ]
-                #                         ),
-                #                         dbc.RadioItems(
-                #                             options=[
-                #                                 {"label": "On", "value": "On"},
-                #                                 {"label": "Off", "value": "Off"},
-                #                             ],
-                #                             value="Off",
-                #                             id="cml-option",
-                #                         ),
-                #                         dbc.Tooltip(
-                #                             tl.ef_options_tooltip_cml,
-                #                             target="info-cml",
-                #                         ),
-                #                     ],
-                #                     lg=4,
-                #                     md=4,
-                #                     sm=12,
-                #                     class_name="pt-4 pt-sm-4 pt-md-1",
-                #                 ),
-                #                 dbc.Col(
-                #                     [
-                #                         dbc.Label(
-                #                             [
-                #                                 "Risk-Free Rate",
-                #                                 html.I(
-                #                                     className="bi bi-info-square ms-2",
-                #                                     id="info-rf-rate",
-                #                                 ),
-                #                             ]
-                #                         ),
-                #                         dbc.Input(
-                #                             type="number",
-                #                             min=0,
-                #                             max=100,
-                #                             value=0,
-                #                             id="risk-free-rate-option",
-                #                         ),
-                #                         dbc.FormText("0 - 100 (Format: XX.XX)"),
-                #                         dbc.Tooltip(
-                #                             tl.ef_options_tooltip_rf_rate,
-                #                             target="info-rf-rate",
-                #                         ),
-                #                     ],
-                #                     lg=4,
-                #                     md=4,
-                #                     sm=12,
-                #                     class_name="pt-4 pt-sm-4 pt-md-1",
-                #                 ),
-                #             ]
-                #         ),
-                #         dbc.Row(html.H5(children="Monte Carlo Simulation")),
-                #         dbc.Row(
-                #             [
-                #                 # html.Hr(),
-                #                 dbc.Label(
-                #                     [
-                #                         "Number of points",
-                #                         html.I(
-                #                             className="bi bi-info-square ms-2",
-                #                             id="info-monte-carlo",
-                #                         ),
-                #                     ],
-                #                     width=6,
-                #                 ),
-                #                 dbc.Col(
-                #                     [
-                #                         dbc.Input(
-                #                             type="number",
-                #                             min=0,
-                #                             max=settings.MC_MAX,
-                #                             value=0,
-                #                             id="monte-carlo-option",
-                #                         ),
-                #                         dbc.FormFeedback("", type="valid"),
-                #                         dbc.FormFeedback(
-                #                             f"it should be an integer number ≤{settings.MC_MAX}", type="invalid"
-                #                         ),
-                #                     ],
-                #                     width=6,
-                #                 ),
-                #                 dbc.Tooltip(
-                #                     tl.ef_options_monte_carlo,
-                #                     target="info-monte-carlo",
-                #                 ),
-                #             ],
-                #             className="p-1",
-                #         ),
-                #         dbc.Row(html.H5(children="Transition map")),
-                #         dbc.Row(
-                #             [
-                #                 dbc.Label(
-                #                     [
-                #                         "Show transition map",
-                #                         html.I(
-                #                             className="bi bi-info-square ms-2",
-                #                             id="info-transition-map",
-                #                         ),
-                #                     ],
-                #                     width=6,
-                #                 ),
-                #                 dbc.Tooltip(
-                #                     tl.ef_options_transition_map,
-                #                     target="info-transition-map",
-                #                 ),
-                #                 dbc.RadioItems(
-                #                     options=[
-                #                         {"label": "On", "value": "On"},
-                #                         {"label": "Off", "value": "Off"},
-                #                     ],
-                #                     value="Off",
-                #                     id="transition-map-option",
-                #                 ),
-                #             ],
-                #             className="p-1",
-                #         ),
                     ]
                 ),
                 html.Div(
@@ -267,92 +104,41 @@ def card_controls(
     )
     return card
 
-
-# @callback(
-#     Output(component_id="risk-free-rate-option", component_property="disabled"),
-#     Input(component_id="cml-option", component_property="value"),
-# )
-# def update_risk_free_rate(cml: str):
-#     return cml == "Off"
-
 #
-# @callback(
-#     Output("ea-show-url", "children"),
-#     Input("ea-url", "href"),
+# @app.callback(
+#     Output("ea-symbols-list", "options"),
+#     Input("ea-symbols-list", "search_value"),
 #     Input("ea-symbols-list", "value"),
-#     Input("ea-base-currency", "value"),
-#     Input("ea-first-date", "value"),
-#     Input("ea-last-date", "value"),
 # )
-# def update_link_ef(href: str, tickers_list: list, ccy: str, first_date: str, last_date: str):
-#     return create_link(ccy=ccy, first_date=first_date, href=href, last_date=last_date, tickers_list=tickers_list)
-
-
-@app.callback(
-    Output("ea-symbols-list", "options"),
-    Input("ea-symbols-list", "search_value"),
-    Input("ea-symbols-list", "value"),
-)
-def optimize_search_ef(search_value, selected_values):
-    return (
-        [o for o in options if re.match(search_value, o, re.IGNORECASE) or o in (selected_values or [])]
-        if search_value
-        else selected_values
-    )
-
-
-# @app.callback(
-#     Output("monte-carlo-option", "valid"),
-#     Output("monte-carlo-option", "invalid"),
-#     Input("monte-carlo-option", "value"),
-# )
-# def check_validity_monte_carlo(number: int):
-#     """
-#     Check if input is an integer in range for 0 to MC_MAX.
-#     """
-#     if number:
-#         is_correct_number = number in range(0, settings.MC_MAX) and isinstance(number, int)
-#         return is_correct_number, not is_correct_number
-#     return False, False
-
-
-@app.callback(
-    Output("ea-symbols-list", "disabled"),
-    Input("ea-symbols-list", "value"),
-)
-def disable_search(tickers_list) -> bool:
-    """
-    Disable asset search form if the number of ticker exceeds allowed in settings.
-    """
-    return len(tickers_list) >= settings.ALLOWED_NUMBER_OF_TICKERS
+# def optimize_search_ef(search_value, selected_values):
+#     return (
+#         [o for o in options if re.match(search_value, o, re.IGNORECASE) or o in (selected_values or [])]
+#         if search_value
+#         else selected_values
+#     )
 
 #
 # @app.callback(
-#     Output("ef-copy-link-button", "disabled"),
-#     Input("ef-symbols-list", "value"),
+#     Output("ea-symbols-list", "disabled"),
+#     Input("ea-symbols-list", "value"),
 # )
-# def disable_link_button(tickers_list) -> bool:
+# def disable_search(tickers_list) -> bool:
 #     """
-#     Disable "Copy Link" button.
-#
-#     Conditions:
-#     - list of tickers length is < 2
-#     - number of tickers is more than allowed (in settings)
+#     Disable asset search form if the number of ticker exceeds allowed in settings.
 #     """
-#     return check_if_list_empty_or_big(tickers_list) or len(tickers_list) < 2
+#     return len(tickers_list) >= settings.ALLOWED_NUMBER_OF_TICKERS
+
+
+# @app.callback(
+#     Output("ea-submit-button-state", "disabled"),
+#     Input("ea-symbols-list", "value"),
+# )
+# def disable_submit(tickers_list) -> bool:
+#     """
+#     Disable Submit button.
 #
-
-
-@app.callback(
-    Output("ea-submit-button-state", "disabled"),
-    Input("ea-symbols-list", "value"),
-)
-def disable_submit(tickers_list) -> bool:
-    """
-    Disable Submit button.
-
-    conditions:
-    - number of tickers is < 2
-    - MC number is incorrect
-    """
-    return len(tickers_list) < 1
+#     conditions:
+#     - number of tickers is < 2
+#     - MC number is incorrect
+#     """
+#     return len(tickers_list) > 1

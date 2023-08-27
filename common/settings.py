@@ -1,6 +1,6 @@
 # import okama
 
-default_symbols = ["MSFT", "AAPL", "EXPE"]
+default_symbols = "EXPE"
 default_benchmark = "SP500TR.INDX"
 default_symbols_benchmark = ["SPY.US", "VOO.US"]
 default_currency = "USD"
