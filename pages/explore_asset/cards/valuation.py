@@ -9,18 +9,18 @@ card_graph1 = dbc.Card(
     dbc.CardBody(
         [
             html.H6(f"{ticker} price to Earnings (P/E)"),
-            dcc.RadioItems(
-                options=[
-                    {'label': '3Y', 'value': '3Y'},
-                    {'label': '5Y', 'value': '5Y'},
-                    {'label': 'All', 'value': 'ALL'},
-                ],
-                value='3Y',  # Default selected value
-                id='pe-time-range-radio',
+            dbc.RadioItems(
+                id="time-range-radio",
                 className="btn-group",
                 inputClassName="btn-check",
                 labelClassName="btn btn-outline-primary",
-                inline=True
+                labelCheckedClassName="active",
+                options=[
+                    {"label": "3Y", "value": "3Y"},
+                    {"label": "5Y", "value": "5Y"},
+                    {"label": "All", "value": "ALL"},
+                ],
+                value="3Y",  # Default selected value
             ),
             dcc.Graph(id='p/e-graph', figure={})  # Placeholder figure
         ]

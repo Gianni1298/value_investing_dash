@@ -7,7 +7,7 @@ import plotly.graph_objs as go
 
 from common.parse_query import make_list_from_string
 from pages.explore_asset.cards.stock_info import card_ea_info
-from pages.explore_asset.cards.ea_chart import card_graf
+from pages.explore_asset.cards.ea_chart import card_graf, get_stock_graph
 from pages.explore_asset.cards.controls import card_controls
 from pages.explore_asset.cards.valuation import card_valuation
 
@@ -50,30 +50,9 @@ def layout(tickers=None, start_date=None, end_date=None, ccy=None, **kwargs):
 )
 def update_ea_cards(screen, n_clicks, selected_symbols, sd_value, ed_value):
     # Ensure symbols is a list
-    symbols = selected_symbols if isinstance(selected_symbols, list) else [selected_symbols]
+    symbol = selected_symbols if isinstance(selected_symbols, list) else [selected_symbols]
 
-    # Fetch stock data
-    data = {symbol: yf.download(symbol, start=sd_value, end=ed_value) for symbol in symbols}
-
-    # Plot
-    traces = []
-    for symbol, df in data.items():
-        traces.append(go.Scatter(x=df.index, y=df['Close'], mode='lines', name=symbol))
-
-    fig1 = {
-        'data': traces,
-        'layout': go.Layout(
-            title='Stock Prices',
-            xaxis={'title': 'Date'},
-            yaxis={'title': 'Price'}
-        )
-    }
-
-    # Config for the graph
-    config1 = {
-        'displayModeBar': True,
-        'displaylogo': False,
-    }
+    fig1, config1 = get_stock_graph(symbol, sd_value, ed_value)
 
     return fig1, config1
 
