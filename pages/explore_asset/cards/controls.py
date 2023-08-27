@@ -89,7 +89,7 @@ def card_controls(
                 html.Div(
                     [
                         dbc.Button(
-                            children="Submit",
+                            children="Update Graph",
                             id="ea-submit-button-state",
                             n_clicks=0,
                             color="primary",
