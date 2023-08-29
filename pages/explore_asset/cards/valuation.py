@@ -5,12 +5,12 @@ from dash.dependencies import Input, Output, State
 ticker = State(component_id="ea-symbols-list", component_property="value")
 
 # Placeholder graph cards
-card_graph1 = dbc.Card(
+trailing_pe_graph = dbc.Card(
     dbc.CardBody(
         [
             html.H6(f"{ticker} price to Earnings (P/E)"),
             dbc.RadioItems(
-                id="time-range-radio",
+                id="trailing-pe-time-range-radio",
                 className="btn-group",
                 inputClassName="btn-check",
                 labelClassName="btn btn-outline-primary",
@@ -22,7 +22,7 @@ card_graph1 = dbc.Card(
                 ],
                 value="3Y",  # Default selected value
             ),
-            dcc.Graph(id='p/e-graph', figure={})  # Placeholder figure
+            dcc.Graph(id='trailing-pe-graph', figure={})  # Placeholder figure
         ]
     ),
     class_name="mb-3",
@@ -65,7 +65,7 @@ card_valuation = dbc.Card(
 
             # First row of graphs
             dbc.Row([
-                dbc.Col(card_graph1, width=6),  # Half the width (12/2)
+                dbc.Col(trailing_pe_graph, width=6),  # Half the width (12/2)
                 dbc.Col(card_graph2, width=6)
             ], className="mb-3"),  # margin-bottom to add some spacing between rows
 
@@ -78,3 +78,11 @@ card_valuation = dbc.Card(
     ),
     class_name="mb-3",
 )
+
+
+def get_pe_graph(symbol: str, pe_time_range: str):
+    """
+    Get P/E graph for a given symbol.
+    """
+
+
