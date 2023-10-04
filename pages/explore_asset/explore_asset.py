@@ -60,5 +60,5 @@ def update_ea_cards(screen, n_clicks, selected_symbols, sd_value, ed_value, pe_t
     # P/E graph
     fig2 = get_pe_graph(symbol, pe_time_range)
 
-    return fig1, config1
+    return fig1, config1, fig2
 
